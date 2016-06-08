@@ -13,9 +13,7 @@ function subfnCreateTimeToPeakMaps(Image1, Image2, CondName, SPM)
     % load images
     I1 = spm_read_vols(V1);
     I2 = spm_read_vols(V2);
-    % select SPM.mat file
-    Pspm = spm_select(1,'mat','Select the SPM.mat file');
-    load(Pspm)
+
     % load the basis functions
     Hrf = SPM.xBF.bf(:,1:2);
     dt = SPM.xBF.dt;
@@ -40,6 +38,6 @@ function subfnCreateTimeToPeakMaps(Image1, Image2, CondName, SPM)
    % Write the time to peak map to disk
    Vo = V1;
    Vo.descrip = 'time to peak plot for beta1 > 0';
-   Vo.fname = ['T2P_2BF.img'];
+   Vo.fname = [sprintf('Time2Peak2bf_%s.nii',CondName)];
    spm_write_vol(Vo, OutData);
    

@@ -1,4 +1,4 @@
-function subfnCalcMagSPM(Image1,Image2,Design, ColumnsOfInterest);
+function subfnCalcMagSPM(Image1, Image2, Design, ColumnsOfInterest, CondName)
 % Name: subfnCalcMagSPM
 % Inputs:
 %           Image1: full path to beta image corresponding to the primary
@@ -25,16 +25,18 @@ function subfnCalcMagSPM(Image1,Image2,Design, ColumnsOfInterest);
 Vin = spm_vol(Image1);
 Vin(2) = spm_vol(Image2);
 [PathName FileName Ext] = fileparts(Image1);
+% What is the condition name?
+
 % Create the output image structure
 %
 % The extension has been hardcoded here allowing inputs to be header files,
 % or files where the extension is: .img,1 as per the output from the
 % spm_select program. --JS 7/2/10
-Ext = '.img';
+Ext = '.nii';
 %
 VOut = Vin(1);
-VOut.fname = fullfile(PathName, ['MagnitudeImage' Ext]);
-VOut.descrip = 'Magnitude Image';
+VOut.fname = fullfile(PathName, ['Magbf2_' CondName Ext]);
+VOut.descrip = 'Magnitude Image from bases 1 and 2';
 
 
 % Check Design matrix to determine if it is normalized
