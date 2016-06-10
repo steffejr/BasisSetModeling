@@ -1,4 +1,5 @@
 P = spm_select(1,'SPM','Select the SPM.mat file');
+load(P)
 % Which session?
 NSess = length(SPM.Sess);
 if NSess > 1
